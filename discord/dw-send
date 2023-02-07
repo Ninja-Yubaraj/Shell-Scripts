@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#
+# Script name: dw-send
+# Version: 1.0.0
+# Description: Send attachments to discord channel through webhooks.
+# Dependencies: curl
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles
+# Contributors: Yubaraj Sarkar
+
+# Check if $1 is empty then exit
+if [ -z "$1" ]; then
+    echo "Usage: $0 <message> <webhook_url>"
+    exit 1
+fi
+
+# Check if the file exists
+if [ ! -f "$1" ]; then
+    echo "Error: File $1 not found"
+    exit 1
+fi
+
+# Check if $2 is empty. If empty, then pass the user specified webhook url
+if [[ -z "${2:-}" ]]; then
+    WEBHOOK_URL=""
+else
+    WEBHOOK_URL="$2"
+fi
+
+# Send the attachment
+# for more info: https://birdie0.github.io/discord-webhooks-guide/tools/curl.html
+curl -s \
+  -F 'payload_json={"username": "", "content": ""}' \
+  -F "file1=@$1" \
+  $WEBHOOK_URL \
+  > /dev/null

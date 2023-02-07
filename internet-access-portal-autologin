@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# Script name: internet-access-portal-autologin
+# Version: 1.0.0
+# Description: Automatic (Linux) login script for broadband internet access portal(alliance, wishnet, etc.)
+# Dependencies: curl, ping, LinuxOS(read disclaimer)
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+# Disclaimer: This script as of now only runs on Linux as ping* command works differently on Windows.
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+login_portal_ip=""
+login_portal_url=""
+dns="1.1.1.1"
+user_id=""
+password=""
+
+if ping -c 1 -q $dns &> /dev/null; then
+    echo "Connected to internet!"
+    exit
+else
+    echo "Connecting to internet..."
+    while ! ping -c 1 $login_portal_ip &> /dev/null; do
+        echo "Trying to connect to Login Portal"
+        sleep 1
+    done
+    curl -s -X POST --data "user=$user_id&pass=$password&login=Login" $login_portal_url > /dev/null
+    echo "Successfully Logged in to Internet Portal"
+fi

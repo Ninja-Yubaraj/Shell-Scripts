@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# Script name: pywal-betterlockscreen-lock
+# Version: 1.0
+# Description: A standard script to lock screen session using betterlockscreen with pywal colors.
+# Dependencies: betterlockscreen, pywal
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License:
+# Contributors: Yubaraj Sarkar
+# Code Status: Deprecated
+# Reason: betterlockscreen reloads the wallpaper even its not changed, which is a little bit slow while locking the screen.
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+# Import the colors
+. "$HOME/.cache/wal/colors.sh"
+
+betterlockscreen -u $wallpaper
+betterlockscreen --quiet --lock blur

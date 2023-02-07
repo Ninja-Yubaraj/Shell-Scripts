@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Script name: dc-message
+# Version: 1.0.0
+# Description: Send messages to discord channels as user.
+# Dependencies: curl
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Check if $1 is empty then exit
+if [ -z "$1" ]; then
+    echo "Usage: $0 <message> <channel_id>"
+    exit 1
+fi
+
+# Check if $2 is empty. If empty, then pass the user specified channel id.
+if [[ -z "${2:-}" ]]; then
+    CHANNEL_ID=""
+else
+    CHANNEL_ID="$2"
+fi
+
+curl -s \
+  -H "Authorization: " \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d "{\"content\": \"$1\"}" \
+  https://discordapp.com/api/channels/$CHANNEL_ID/messages \
+  >/dev/null

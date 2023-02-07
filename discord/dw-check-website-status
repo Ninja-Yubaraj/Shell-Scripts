@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#
+# Script name: dw-check-website-status
+# Version: 1.0.0
+# Description: Check website status and send notification to discord channel through webhooks if website is down.
+# Dependencies: curl
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Discord webhook
+url=""
+
+# websites_list="your_domain1 your_domain2 your_domain3"
+websites_list="google.com 1.1.1.1"
+
+for website in ${websites_list} ; do
+        status_code=$(curl --write-out %{http_code} --silent --output /dev/null -L ${website})
+
+        if [[ "$status_code" -ne 200 ]] ; then
+            curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"${website} is down! HTTP status code: ${status_code}\"}" ${url}
+        else
+            #echo "${website} is running!"
+            #curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"${website} is running!\"}" ${url}
+            sleep 0
+        fi
+done

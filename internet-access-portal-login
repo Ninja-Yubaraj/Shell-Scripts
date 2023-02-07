@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# Script name: internet-access-portal-login
+# Version: 1.0.0
+# Description: Login script for broadband internet access portal(alliance, wishnet, etc.)
+# Dependencies: curl
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+website=""
+user_id=""
+password=""
+
+curl -s -X POST --data "user=$user_id&pass=$password&login=Login" $website > /dev/null

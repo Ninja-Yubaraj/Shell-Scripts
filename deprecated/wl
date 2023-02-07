@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# Script name: wl
+# Version: 1.0
+# Description: A simple and minimal script to set the wallpaper using pywal with sxiv.
+# Dependencies:  sxiv, pywal_set_wallpaper (bin script)
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License:
+# Contributors: Yubaraj Sarkar
+# Code Status: Deprecated
+# Reason: This script is not needed anymore, because I have created a better script which supports multi directory.
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+SXIV="sxiv -foprt"
+WALLPAPERS_DIR="/usr/share/wallpapers"
+WALLPAPER="$($SXIV $WALLPAPERS_DIR)"
+
+$HOME/.local/bin/pywal_set_wallpaper $WALLPAPER

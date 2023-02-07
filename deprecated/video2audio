@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+#
+# Script name: video2audio
+# Version: 1.0.0
+# Description: Convert video to audio files with ffmpeg
+# Dependencies: ffmpeg, file, notify-send(dunst)
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+# Code Status: Deprecated
+# Reason: 1. Don't check if the parameters are empty.
+#         2. Can't set default parameters.
+#         3. Can't convert multiple files at once in a directory.
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+# Check if ffmpeg is installed
+if ! command -v ffmpeg &> /dev/null
+then
+    echo "ffmpeg could not be found"
+    exit
+fi
+
+# Check if the file exists
+if [ ! -f "$1" ]; then
+    echo "File does not exist"
+    exit
+fi
+
+# Check if the file is a video
+if ! file "$1" | grep -q "video"; then
+    echo "File is not a video"
+    exit
+fi
+
+# Convert
+ffmpeg -i "$1" -vn "${1%.*}.$2"
+
+# Notify
+notify-send "video2audio" "Video converted to audio" -i music-solid

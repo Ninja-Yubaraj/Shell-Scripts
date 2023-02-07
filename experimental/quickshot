@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Script name: quickshot (scrot)
+# Version: 1.0.0
+# Description: A script to take a screenshot with time stamps.
+# Dependencies: scrot, date, mkdir
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+path="$HOME/Pictures/Screenshots/$(date +'%Y-%m')"
+#name="screenshot-$(date +'%Y-%m-%d-%H%M%S')-$(echo $USER)@$(echo $HOSTNAME).png"
+name="screenshot-$(date +'%Y-%m-%d-%H%M%S').png"
+
+mkdir -p $path
+scrot --select $path/$name

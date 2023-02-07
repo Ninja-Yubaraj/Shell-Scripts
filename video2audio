@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Script name: video2audio
+# Version: 2.0.0
+# Description: Convert video to audio files with ffmpeg
+# Dependencies: ffmpeg, file, notify-send(dunst)
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Check if $1 is empty, if it is then exit the script.
+if [ -z "$1" ]; then
+    echo "No file or directory specified."
+    exit 1
+fi
+
+# Check if $2 is empty, if it is then exit the script.
+if [ -z "$2" ]; then
+    echo "No output format specified."
+    exit 1
+fi
+
+# Check if the parameter is a file or directory and if it is a directory then,
+# convert all the files in the directory else convert the file only.
+if [ -d "$1" ]; then
+    for file in "$1"/*; do
+        if [ -f "$file" ]; then
+            ffmpeg -i "$file" -vn "${file%.*}.$2"
+        fi
+    done
+elif [ -f "$1" ]; then
+    ffmpeg -i "$1" -vn "${1%.*}.$2"
+fi
+
+# Notify
+if command -v notify-send &>/dev/null; then
+    notify-send "video2audio" "Finished Converting File(s)." -i check-solid
+fi

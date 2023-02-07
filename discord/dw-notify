@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# Script name: dw-notify
+# Version: 1.0.0
+# Description: Send notifications to discord channel through webhooks.
+# Dependencies: curl
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+# Check if $1 is empty. If empty, then pass the user specified webhook url
+if [[ -z "${1:-}" ]]; then
+    WEBHOOK_URL=""
+else
+    WEBHOOK_URL="$1"
+fi
+
+read "MESSAGE"
+
+curl \
+  -H "Content-Type: application/json" \
+  -d "{\"content\": \"$MESSAGE\"}" \
+  $WEBHOOK_URL
