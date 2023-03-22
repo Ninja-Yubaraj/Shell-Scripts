@@ -4,9 +4,9 @@
 # Version: 1.0
 # Description: A simple and minimal script to set the wallpaper using pywal with sxiv.
 # Dependencies:  sxiv, pywal_set_wallpaper (bin script)
-# Github: https://github.com/Ninja-Yubaraj/Dotfiles
-# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
-# License:
+# Github: https://github.com/Ninja-Yubaraj/Shell-Scripts
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Shell-Scripts
+# License: https://github.com/Ninja-Yubaraj/Shell-Scripts/LICENSE
 # Contributors: Yubaraj Sarkar
 # Code Status: Deprecated
 # Reason: This script is not needed anymore, because I have created a better script which supports multi directory.

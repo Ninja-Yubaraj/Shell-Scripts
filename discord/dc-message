@@ -4,9 +4,9 @@
 # Version: 1.0.0
 # Description: Send messages to discord channels as user.
 # Dependencies: curl
-# Github: https://github.com/Ninja-Yubaraj/Dotfiles
-# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
-# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Github: https://github.com/Ninja-Yubaraj/Shell-Scripts
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Shell-Scripts
+# License: https://github.com/Ninja-Yubaraj/Shell-Scripts/LICENSE
 # Contributors: Yubaraj Sarkar
 
 # Check if $1 is empty then exit

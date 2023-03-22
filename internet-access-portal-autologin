@@ -4,9 +4,9 @@
 # Version: 1.0.0
 # Description: Automatic (Linux) login script for broadband internet access portal(alliance, wishnet, etc.)
 # Dependencies: curl, ping, LinuxOS(read disclaimer)
-# Github: https://github.com/Ninja-Yubaraj/Dotfiles
-# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
-# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Github: https://github.com/Ninja-Yubaraj/Shell-Scripts
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Shell-Scripts
+# License: https://github.com/Ninja-Yubaraj/Shell-Scripts/LICENSE
 # Contributors: Yubaraj Sarkar
 # Disclaimer: This script as of now only runs on Linux as ping* command works differently on Windows.
 

@@ -4,9 +4,9 @@
 # Version: 1.0.0
 # Description: A simple script to take screenshots with time stamps.
 # Dependencies: maim, xclip, date, mkdir
-# Github: https://github.com/Ninja-Yubaraj/Dotfiles
-# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
-# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Github: https://github.com/Ninja-Yubaraj/Shell-Scripts
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Shell-Scripts
+# License: https://github.com/Ninja-Yubaraj/Shell-Scripts/LICENSE
 # Contributors: Yubaraj Sarkar
 # Code Status: Deprecated
 # Reason: 1. Don't check for dependencies.

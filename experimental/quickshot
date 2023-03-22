@@ -4,9 +4,9 @@
 # Version: 1.0.0
 # Description: A script to take a screenshot with time stamps.
 # Dependencies: scrot, date, mkdir
-# Github: https://github.com/Ninja-Yubaraj/Dotfiles
-# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
-# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Github: https://github.com/Ninja-Yubaraj/Shell-Scripts
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Shell-Scripts
+# License: https://github.com/Ninja-Yubaraj/Shell-Scripts/LICENSE
 # Contributors: Yubaraj Sarkar
 
 # Set with the flags "-e", "-u","-o pipefail" cause the script to fail
