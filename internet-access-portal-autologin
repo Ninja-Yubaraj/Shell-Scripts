@@ -3,7 +3,7 @@
 # Script name: internet-access-portal-autologin
 # Version: 1.0.0
 # Description: Automatic (Linux) login script for broadband internet access portal(alliance, wishnet, etc.)
-# Dependencies: curl, ping, LinuxOS(read disclaimer)
+# Dependencies: curl, ping, date, LinuxOS(read disclaimer)
 # Github: https://github.com/Ninja-Yubaraj/Shell-Scripts
 # Gitlab: https://gitlab.com/Ninja-Yubaraj/Shell-Scripts
 # License: https://github.com/Ninja-Yubaraj/Shell-Scripts/LICENSE
@@ -22,14 +22,14 @@ user_id=""
 password=""
 
 if ping -c 1 -q $dns &> /dev/null; then
-    echo "Connected to internet!"
+    echo "$(date) Already connected to internet!"
     exit
 else
-    echo "Connecting to internet..."
+    echo "$(date) Connecting to internet..."
     while ! ping -c 1 $login_portal_ip &> /dev/null; do
-        echo "Trying to connect to Login Portal"
+        echo "$(date) Trying to connect to Login Portal"
         sleep 1
     done
     curl -s -X POST --data "user=$user_id&pass=$password&login=Login" $login_portal_url > /dev/null
-    echo "Successfully Logged in to Internet Portal"
+    echo "$(date) Successfully Logged in to Internet Portal"
 fi
