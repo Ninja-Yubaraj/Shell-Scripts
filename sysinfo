@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Get system details
+CPU=$(lscpu | grep "Model name" | sed 's/Model name:[ \t]*//')
+RAM_SIZE=$(free -h | awk '/Mem:/ {print $2}')
+GPU=$(lspci | grep -i vga | sed 's/.*: //')
+STORAGE=$(lsblk -o NAME,SIZE,TYPE | grep disk | awk '{print $1 " (" $2 ")"}' | xargs | sed 's/ /, /g')
+OS=$(grep -oP '(?<=^PRETTY_NAME=).+' /etc/os-release | tr -d '"')
+
+# Get RAM frequency (requires root for dmidecode)
+if command -v dmidecode &>/dev/null; then
+    RAM_FREQ=$(sudo dmidecode --type memory | grep -i "Speed" | grep -v "Configured" | awk '{print $2 " " $3}' | head -n 1)
+elif command -v lshw &>/dev/null; then
+    RAM_FREQ=$(sudo lshw -C memory | grep -i "clock" | awk '{print $2 " " $3}' | head -n 1)
+else
+    RAM_FREQ="Unknown"
+fi
+
+# Choose format based on argument
+if [[ "$1" == "csv" ]]; then
+    echo "$CPU, $RAM_SIZE @ $RAM_FREQ, $GPU, $STORAGE, $OS"
+else
+    echo "CPU     : $CPU"
+    echo "RAM     : $RAM_SIZE @ $RAM_FREQ"
+    echo "GPU     : $GPU"
+    echo "Storage : $STORAGE"
+    echo "OS      : $OS"
+fi
