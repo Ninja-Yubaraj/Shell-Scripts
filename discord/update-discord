@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+DISCORD_URL="https://discord.com/api/download?platform=linux&format=deb"
+DOWNLOAD_PATH="/tmp/discord.deb"
+
+echo "Downloading latest Discord .deb package"
+wget -q --show-progress -O "$DOWNLOAD_PATH" "$DISCORD_URL"
+
+if [ $? -ne 0 ]; then
+    echo "Failed to download Discord. Exiting."
+    exit 1
+fi
+
+echo "Installing Discord..."
+sudo apt install -y "$DOWNLOAD_PATH"
+
+echo "Cleaning up..."
+rm "$DOWNLOAD_PATH"
+
+echo "Discord is updated!"
