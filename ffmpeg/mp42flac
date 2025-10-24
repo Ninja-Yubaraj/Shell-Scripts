@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+
+for f in *.mp4; do
+  codec=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name \
+           -of default=nw=1:nk=1 "$f")
+
+  base="${f%.mp4}"
+
+  if [[ "$codec" =~ ^(flac|alac|pcm_) ]]; then
+    # Already lossless – just copy the stream
+    echo "[$f] Lossless codec ($codec) detected, copying..."
+    ffmpeg -i "$f" -vn -acodec copy "${base}.flac"
+  else
+    # Lossy codec – convert to lossless FLAC
+    echo "[$f] Lossy codec ($codec) detected, converting to FLAC..."
+    ffmpeg -i "$f" -vn -acodec flac "${base}.flac"
+  fi
+done
+
