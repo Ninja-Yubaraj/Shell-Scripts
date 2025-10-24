@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+for f in *.mp3; do
+  [[ -f "$f" ]] || continue
+  base="${f%.mp3}"
+  echo "Converting: $f → ${base}.flac"
+  ffmpeg -i "$f" -acodec flac -map_metadata -1 "${base}.flac" -y
+done
